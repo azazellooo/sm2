@@ -1,0 +1,35 @@
+.paginate-input{
+    border: solid aliceblue 2px;
+    background-color: transparent;
+    border-right: none;
+    border-left: none;
+    width: inherit;
+    text-align: center;
+}
+
+.paginate-input:focus{
+    background-color: #141B41;
+    color: aliceblue;
+    border: none;}
+.paginate-btn{
+    border: solid aliceblue 2px;
+    padding-inline: 5px;
+    text-decoration: none;
+    color: #141B41;
+}
+
+.paginate-btn:hover{
+    background-color: #141B41;
+    color: aliceblue;
+    border: none;
+}
+.paginate-left{
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-right-color: transparent;
+}
+.paginate-right{
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    border-left: none;
+}
