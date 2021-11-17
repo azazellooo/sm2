@@ -17,7 +17,7 @@ class ContentListView(ListView, FormMixin):
     paginate_orphans = 10
 
     def get_queryset(self):
-        return Content.objects.using('metrics').all()
+        return Content.objects.using('metrics').all()[:10]
 
 
 def create_content(request, *args, **kwargs):
@@ -39,7 +39,7 @@ def create_content(request, *args, **kwargs):
 
 def delete_content(request, *args, **kwargs):
     if request.is_ajax and request.method == 'POST':
-        content = Content.objects.using('metrics').get(id=list(dict(request.POST).keys())[0])
+        content = Content.objects.using('metrics').get(content_id=list(dict(request.POST).keys())[0])
         content.delete()
         return JsonResponse({'message': f'content "{content.name_content}" is deleted successfully'}, status=200)
     return JsonResponse({"error": "something went wrong..."}, status=400, safe=False)
@@ -50,14 +50,14 @@ class ContentUpdateView(UpdateView):
     form_class = ContentForm
 
     def get(self, request, *args, **kwargs):
-        content = Content.objects.using('metrics').get(id=kwargs.get('pk'))
+        content = Content.objects.using('metrics').get(content_id=kwargs.get('pk'))
         form = ContentForm(instance=content)
         return HttpResponse(form.as_p())
 
     def post(self, request, *args, **kwargs):
         data = request.POST
         if request.is_ajax:
-            content = Content.objects.using('metrics').get(id=kwargs.get('pk'))
+            content = Content.objects.using('metrics').get(content_id=kwargs.get('pk'))
             content.project_name = data.get("project_name")
             content.name_content = data.get('name_content')
             content.resource = data.get('resource')

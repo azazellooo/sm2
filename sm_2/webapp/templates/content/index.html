@@ -28,13 +28,13 @@
             {% for content in contents.all %}
                 <tr>
                     <th scope="row" role="group">
-                        <div id="{{ content.id }}" data-deleteurl="{% url 'webapp:delete-content' %}" class="btn-group">
+                        <div id="{{ content.content_id }}" data-deleteurl="{% url 'webapp:delete-content' %}" class="btn-group">
                             <button onclick="deleteContent(event)" class="btn btn-danger">delete</button>
-                            <button data-updateurl="{% url 'webapp:update-content' content.id %}" onclick="getUpdateForm(event)"
+                            <button data-updateurl="{% url 'webapp:update-content' content.content_id %}" onclick="getUpdateForm(event)"
                                     class="btn btn-secondary">edit</button>
                         </div>
                     </th>
-                    <th scope="row">{{ content.id }}</th>
+                    <th scope="row">{{ content.content_id }}</th>
                     <td>{{ content.project_name }}</td>
                     <td>{{ content.name_content }}</td>
                     <td>{{ content.resource }}</td>
